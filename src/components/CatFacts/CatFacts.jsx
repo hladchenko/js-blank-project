@@ -7,8 +7,8 @@ const CatFacts = () => {
 
   const handleOnClick = async () => {
     setIsLoading(true);
-    const response = await fetch("https://cat-fact.herokuapp.com/facts");
-    const facts = await response?.json();
+    const response = await fetch("https://meowfacts.herokuapp.com?count=5");
+    const { data: facts } = await response?.json();
     setData(facts);
     setIsLoading(false);
   };
@@ -28,9 +28,9 @@ const CatFacts = () => {
           </thead>
           <tbody>
             {data?.map((fact, index) => (
-              <tr key={fact.id || index}>
+              <tr key={index}>
                 <td>{index + 1}</td>
-                <td>{fact.text}</td>
+                <td>{fact}</td>
               </tr>
             ))}
           </tbody>
